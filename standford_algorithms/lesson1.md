@@ -36,3 +36,49 @@ Input: array of n numbers, unsorted
 
 Output: same numbers sorted
 
+### Pseudocode
+
+- recursively sort 1st half / 2nd 
+- merge into one
+ignore base cases: n = 0 or 1
+
+### implementation
+
+```python
+def merge_sort(array):
+    n = len(array)
+    if len(array)<=1 :
+        return
+    front = merge_sort(array[:n])
+    end =merge_sort(array[n:])
+    return merge(front, end)
+
+def merge(arr1, arr2):
+    m = len(arr1)+len(arr2)
+    result = []
+    i = 0
+    j = 0
+    for idx in range(m):
+        if arr1[i] <= arr2[j]:
+            result.append(arr1[i])
+            i += 1
+        else:
+            result.append(arr2[j])
+            j += 1
+```
+
+## Analysis
+
+T(n) is big-Oh of f(n)  -> bounded above by constant multiple of f(n)
+the worst-case running time of an algorithm
+
+Formal Defination
+
+$T(n)=O(f(n))$
+if and only if there exist constants, $c>0$ ，so that $T(n) <= c*f(n)$
+
+big_O: greater_than to f(n);
+omega: less_than to f(n);
+theta: equals to f(n);
+
+little_O: for every c, $T(n) <=c*f(n)$
